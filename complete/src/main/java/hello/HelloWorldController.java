@@ -19,4 +19,10 @@ public class HelloWorldController {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
     }
 
+    @GetMapping("/sayhi")
+    @ResponseBody
+    public Greeting syHi(@RequestParam(name = "name", required = false, defaultValue = "Stranger") String name) {
+        return new Greeting(counter.incrementAndGet(), String.format("Hi, %s ~~~", name));
+    }
+
 }
