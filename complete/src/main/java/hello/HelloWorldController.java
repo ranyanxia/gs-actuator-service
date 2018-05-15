@@ -28,5 +28,4 @@ public class HelloWorldController {
         logger.info("{} is comming, say hi to him/her", name);
         return new Greeting(counter.incrementAndGet(), String.format("Hi, %s ~~~", name));
     }
-
 }
