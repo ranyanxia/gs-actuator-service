@@ -3,14 +3,16 @@
 APP_HOME=/var/royapps/
 APP_NAME='gs-actuator-service'
 LOG_PATH=$APP_HOME$APP_NAME.log
+APP_JAR=gs-actuator-service-0.1.0.jar
 
 echo "deploying app ${APP_NAME}"
-if [ -f $APP_HOME/gs-actuator-service-0.1.0.jar ] ; then
-    mv $APP_HOME/gs-actuator-service-0.1.0.jar  $APP_HOME/gs-actuator-service-0.1.0.jar.bak
+if [ -f $APP_HOME/${APP_JAR} ] ; then
+    mv -f $APP_HOME/${APP_JAR}  $APP_HOME/${APP_JAR}.bak
 fi
 
-cp /var/lib/jenkins/workspace/roy_demo_mvn_github/complete/target/gs-actuator-service-0.1.0.jar $APP_HOME
+cp -f /var/lib/jenkins/workspace/roy_demo_mvn_github/complete/target/${APP_JAR} $APP_HOME
 
+chmod 775 $APP_HOME/${APP_JAR}
 
 cd $APP_HOME
 
