@@ -5,7 +5,10 @@ APP_NAME='gs-actuator-service'
 LOG_PATH=$APP_HOME$APP_NAME.log
 
 echo "deploying app ${APP_NAME}"
-mv $APP_HOME/gs-actuator-service-0.1.0.jar  $APP_HOME/gs-actuator-service-0.1.0.jar.bak
+if [ -f $APP_HOME/gs-actuator-service-0.1.0.jar ] ; then
+    mv $APP_HOME/gs-actuator-service-0.1.0.jar  $APP_HOME/gs-actuator-service-0.1.0.jar.bak
+fi
+
 cp /var/lib/jenkins/workspace/roy_demo_mvn_github/complete/target/gs-actuator-service-0.1.0.jar $APP_HOME
 
 
@@ -26,5 +29,8 @@ echo 'starting the app'
 #nohup java -server -jar ${APP_NAME}-0.1.0.jar > $LOG_PATH 2>&1
 nohup java -server -jar ${APP_NAME}-0.1.0.jar >$LOG_PATH 2>&1 &
 
-chmod 777 $LOG_PATH
+if [ -f $LOG_PATH ] ; then
+    chmod 777 $LOG_PATH
+fi
+
 echo "app started, log path: ${LOG_PATH}"
